@@ -157,14 +157,7 @@ int SPI_ShiftReg_Init()
 void SPI_Write_ShiftReg(uint32_t w_data)
 {
     uint32_t retVal;
-    // reg |= WRITE_BIT;
-    //  uint8_t shift1=(uint8_t)(w_data>>8);
-
-    // uint8_t shift2=(uint8_t)(w_data&&0x00FF);
-
-    // printf("\n%d , %d\n", shift1,shift2);
-    // uint8_t tx_data[2] = {shift1,shift2};
-    // printf("data: %#010x",w_data);
+    
     uint32_t tx_data[2] = {w_data, 0x00000000};
     // uint8_t rx_data[2] = {0x00,0x00};
     uint32_t rx_data[2] = {0x00000000, 0x00000000};
@@ -193,6 +186,7 @@ void SPI_Write_ShiftReg(uint32_t w_data)
     return;
 }
 
+//*************UNUSED FOR (HALL SESNOR)******************
 void Delay_Complete_Callback(int result)
 {
     // Handle the completion of the delay here
@@ -245,51 +239,6 @@ int main(void)
 
     while (1)
     {
-        //     if (MXC_DelayCheck() != E_BUSY) {
-        //             MXC_DelayAsync(MXC_DELAY_MSEC(1), Delay_Complete_Callback);
-        //             count++;
-        //         //The delay is complete, do something
-        //         if  ((count%speed) == 0) {
-
-        //             MXC_GPIO_OutClr(rck_pin.port,rck_pin.mask);
-        //             MXC_GPIO_OutToggle(clr_pin.port,clr_pin.mask);
-        //             j++;
-        //             if(j>255){
-        //                 j=0;
-        //             }
-
-        //             SPI_Write_ShiftReg(j);
-        //             printf("\nHELLO RONAN :) %d", j);
-        //             MXC_GPIO_OutToggle(rck_pin.port,rck_pin.mask);
-
-        //         }
-
-        //     }
-
-        // }
-        // turn off clr pin
-        
-        
-        // for (int x = 0; x < 9; x++)
-        // {
-        //     for (uint32_t i = 0; (i < 24); i++)
-        //     {
-        //         // turn off clr pin
-        //         MXC_GPIO_OutToggle(clr_pin.port, clr_pin.mask);
-        //         // send data via spi
-        //         SPI_Write_ShiftReg(A[x][i]);
-        //         // SPI_Write_ShiftReg((0x00));
-        //         // set latch high
-        //         MXC_GPIO_OutToggle(rck_pin.port, rck_pin.mask);
-        //         MXC_Delay((MXC_DELAY_USEC(165)));
-        //         // set latch low
-        //         MXC_GPIO_OutClr(rck_pin.port, rck_pin.mask);
-        //         // set clear high clear output
-        //         MXC_GPIO_OutClr(clr_pin.port, clr_pin.mask);
-        //         printf("\nHELLO %d", i);
-        //     }
-        // }
-        
         for (int i = 0; (i < 24); i++)
             {
                 // turn off clr pin
@@ -325,37 +274,5 @@ int main(void)
         
         
         
-        // bool up=true;
-        
-        // if(j>25){
-            
-        //     up=false;
-            
-        // }else if(j<0){
-        //     up=true;
-        // }
-
-        // if(up==true){
-        //     j++;
-        //     spi_message+=multiplicand;
-        //     multiplicand=multiplicand*2;
-        // }else if(up=false){
-        //     j--;
-        //     spi_message-=multiplicand;
-        //     multiplicand=multiplicand/2;
-        // }
-        
-        // turn off clr pin
-        // MXC_GPIO_OutToggle(clr_pin.port, clr_pin.mask);
-        // // send data via spi
-        // SPI_Write_ShiftReg(0xAAAAAA);
-        // // SPI_Write_ShiftReg((0x00));
-        // // set latch high
-        // MXC_GPIO_OutToggle(rck_pin.port, rck_pin.mask);
-        // MXC_Delay((MXC_DELAY_MSEC(100)));
-        // // set latch low
-        // MXC_GPIO_OutClr(rck_pin.port, rck_pin.mask);
-        // // set clear high clear output
-        // MXC_GPIO_OutClr(clr_pin.port, clr_pin.mask);
     }
 }
